@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    var PeopleToKnow = People()
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            List(PeopleToKnow.people) {
+                Text($0.name)
+            }
         }
-        .padding()
     }
 }
 
