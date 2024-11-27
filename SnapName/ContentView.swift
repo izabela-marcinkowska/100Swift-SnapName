@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    var PeopleToKnow = People()
+    var peopleToKnow = People()
     var body: some View {
         VStack {
-            List(PeopleToKnow.people) {
+            List(peopleToKnow.people) {
                 Text($0.name)
             }
         }
