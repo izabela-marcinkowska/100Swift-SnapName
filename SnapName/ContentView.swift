@@ -6,14 +6,27 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ContentView: View {
-    var peopleToKnow = People()
+    var people = People()
+    @State private var showingPhotoPicker = false
+    @State private var selectedItem: PhotosPickerItem?
+    @State private var inputImage: UIImage?
+    @State private var showingNamePrompt = false
+    @State private var newPersonName = ""
+    
     var body: some View {
-        VStack {
-            List(peopleToKnow.people) {
-                Text($0.name)
+        NavigationView {
+            List {
+                ForEach(people.people) { person in
+                    NavigationLink(destination: PersonDetailView(person: person)) {
+                        Text(person.name)
+                    }
+                }
             }
+            .navigationTitle("People")
+
         }
     }
 }

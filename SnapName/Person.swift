@@ -24,6 +24,20 @@ class People {
         loadPeople()
     }
     
+    func addPerson(_ person: Person) {
+        people.append(person)
+        savePeople()
+    }
+    
+    func savePeople() {
+        do {
+            let data = try JSONEncoder().encode(people)
+            try data.write(to: savePath)
+        } catch {
+            print("Failed to save people: \(error.localizedDescription)")
+        }
+    }
+    
     func loadPeople() {
             do {
                 let data = try Data(contentsOf: savePath)
