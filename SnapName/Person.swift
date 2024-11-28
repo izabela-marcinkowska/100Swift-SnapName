@@ -8,15 +8,20 @@
 import Foundation
 import SwiftUI
 
+extension URL {
+    static var documentsDirectory: URL {
+        FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
+}
+
 struct Person: Identifiable, Codable {
     var imagePath: String
     var name: String
     var id: UUID
 }
 
-@Observable
-class People {
-    var people: [Person] = []
+class People: ObservableObject {
+    @Published var people: [Person] = []
     let savePath = URL.documentsDirectory.appendingPathComponent("people.json")
 
     
